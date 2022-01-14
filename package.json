@@ -27,6 +27,7 @@
   "author": "Pablo Sirera <psirera4@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "date-fns": "^1.29.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {

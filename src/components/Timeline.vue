@@ -7,8 +7,10 @@
         :class="wrapperItemClass(timelineIndex)"
       >
         <div class="section-year">
-          <p v-if="hasYear(timelineContent)" class="year">
-            {{ getYear(timelineContent) }}
+          <p v-if="showYear(timelineContent)" class="year">
+            <slot :item="timelineContent" name="year">
+              {{ getYear(timelineContent) }}
+            </slot>
           </p>
         </div>
         <TimelineItem
@@ -105,9 +107,10 @@ export default {
     getYear(date) {
       return date.from.getFullYear()
     },
-    hasYear(dataTimeline) {
+    showYear(dataTimeline) {
       return (
-        dataTimeline.hasOwnProperty('from') && dataTimeline.from !== undefined
+        dataTimeline.hasOwnProperty('show_year') &&
+        dataTimeline.show_year !== undefined
       )
     },
     getTimelineItemsAssembled(items) {

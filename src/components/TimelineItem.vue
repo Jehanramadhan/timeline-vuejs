@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { format } from 'date-fns'
 export default {
   name: 'TimelineItem',
   props: {
@@ -31,13 +32,15 @@ export default {
       return color ? `background:${color}` : `background:${this.colorDots}`
     },
     getFormattedDate(item) {
+      if (item.formatDate) {
+        return format(item.from, item.formatDate)
+      }
       const locale = this.dateLocale || window.navigator.language
       const nameMonth = item.from.toLocaleDateString(locale, { month: 'long' })
       if (item.showDayAndMonth) {
         const day = item.from.getDate()
         return `${day}. ${nameMonth}`
       }
-
       return nameMonth
     }
   }
