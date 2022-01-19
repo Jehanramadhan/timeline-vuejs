@@ -17,7 +17,17 @@
           :item-timeline="timelineContent"
           :date-locale="dateLocale"
           :color-dots="colorDots"
-        />
+        >
+          <template v-slot:date="{item}" v-if="timelineContent.slot_date">
+            <slot name="date-item" :item="item" />
+          </template>
+          <template v-slot:title="{item}" v-if="timelineContent.slot_title">
+            <slot name="title-item" :item="item" />
+          </template>
+          <template v-slot:description="{item}" v-if="timelineContent.slot_description">
+            <slot name="description-item" :item="item" />
+          </template>
+        </TimelineItem>
       </div>
     </div>
     <p v-else>{{ messageWhenNoItems }}</p>
