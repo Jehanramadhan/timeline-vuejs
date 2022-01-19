@@ -2,9 +2,15 @@
   <section class="timeline-item">
     <div class="item">
       <span :style="getBackgroundColour(itemTimeline.color)" class="dot" />
-      <h3 class="date-item">{{ getFormattedDate(itemTimeline) }}</h3>
-      <h4 class="title-item" v-html="itemTimeline.title" />
-      <p class="description-item" v-html="itemTimeline.description" />
+      <slot name="date" :item="itemTimeline">
+        <h3 class="date-item">{{ getFormattedDate(itemTimeline) }}</h3>
+      </slot>
+      <slot name="title" :item="itemTimeline">
+        <h4 class="title-item" v-html="itemTimeline.title" />
+      </slot>
+      <slot name="description" :item="itemTimeline">
+        <p class="description-item" v-html="itemTimeline.description" />
+      </slot>
     </div>
   </section>
 </template>
